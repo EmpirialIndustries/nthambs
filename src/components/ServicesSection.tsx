@@ -99,7 +99,7 @@ const ServicesSection = () => {
       <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-primary/5 to-transparent rounded-full blur-3xl" />
       
       <div className="container mx-auto px-4">
-        <div className={`text-center mb-16 transition-all duration-1000 ${
+        <div className={`text-center mb-16 transition-all duration-300 ${
           isVisible ? 'animate-in fade-in-0 slide-in-from-bottom-8' : 'opacity-0'
         }`}>
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Our Services</h2>
