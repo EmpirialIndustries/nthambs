@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Quote, Users, Building2, Factory, Truck, Pickaxe } from "lucide-react";
+import { Quote, Users } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 const ReferencesSection = () => {
@@ -28,42 +28,42 @@ const ReferencesSection = () => {
       company: "New Clydesdale Colliery",
       contact: "Thembi Lubisi",
       industry: "Mining",
-      icon: Pickaxe,
+      image: "/Trusted_By/NewClydesdale.jpg",
       color: "bg-amber-500"
     },
     {
       company: "Masemanzi Mining Holding",
       contact: "Curotha Martin",
       industry: "Mining",
-      icon: Pickaxe,
+      image: "/Trusted_By/Masemanzi.jpg",
       color: "bg-orange-500"
     },
     {
       company: "GNF1",
       contact: "Fortune Naledi",
       industry: "Industrial",
-      icon: Factory,
+      image: "/Trusted_By/GNF1.jpg",
       color: "bg-blue-500"
     },
     {
       company: "Bulktip Logistics",
       contact: "Nikita VanderSandt",
       industry: "Logistics",
-      icon: Truck,
+      image: "/Trusted_By/Bulktip.jpg",
       color: "bg-green-500"
     },
     {
       company: "Premier Construction",
       contact: "John Smith",
       industry: "Construction",
-      icon: Building2,
+      image: "/Trusted_By/Premier.jpg",
       color: "bg-purple-500"
     },
     {
       company: "African Mining Corp",
       contact: "Sarah Johnson",
       industry: "Mining",
-      icon: Pickaxe,
+      image: "/Trusted_By/AfricanMining.jpg", // Note: You'll need this image file
       color: "bg-red-500"
     }
   ];
@@ -92,9 +92,20 @@ const ReferencesSection = () => {
               <Card key={index} className="group hover:shadow-xl transition-all duration-500 border-primary/20 flex-shrink-0 w-72 transform hover:scale-105 hover:-translate-y-2">
                 <CardContent className="p-8 text-center relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className={`${ref.color} w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-all duration-300 relative z-10`}>
-                    <ref.icon className="h-8 w-8 text-white group-hover:animate-bounce" />
+                  
+                  {/* Image container with background color fallback */}
+                  <div className={`${ref.color} w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-all duration-300 relative z-10 overflow-hidden`}>
+                    <img 
+                      src={ref.image} 
+                      alt={`${ref.company} logo`}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-all duration-300"
+                      onError={(e) => {
+                        // Fallback to a generic placeholder or hide the image
+                        e.currentTarget.style.display = 'none';
+                      }}
+                    />
                   </div>
+                  
                   <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors duration-300 relative z-10">{ref.company}</h3>
                   <p className="text-muted-foreground mb-2 group-hover:text-foreground transition-colors duration-300 relative z-10">{ref.contact}</p>
                   <div className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium group-hover:bg-primary group-hover:text-white transition-all duration-300 relative z-10">
