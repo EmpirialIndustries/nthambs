@@ -1,27 +1,49 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Quote, Users } from "lucide-react";
+import { Quote, Users, Building2, Factory, Truck, Pickaxe } from "lucide-react";
 
 const ReferencesSection = () => {
   const references = [
     {
       company: "New Clydesdale Colliery",
       contact: "Thembi Lubisi",
-      industry: "Mining"
+      industry: "Mining",
+      icon: Pickaxe,
+      color: "bg-amber-500"
     },
     {
       company: "Masemanzi Mining Holding",
       contact: "Curotha Martin",
-      industry: "Mining"
+      industry: "Mining",
+      icon: Pickaxe,
+      color: "bg-orange-500"
     },
     {
       company: "GNF1",
       contact: "Fortune Naledi",
-      industry: "Industrial"
+      industry: "Industrial",
+      icon: Factory,
+      color: "bg-blue-500"
     },
     {
       company: "Bulktip Logistics",
       contact: "Nikita VanderSandt",
-      industry: "Logistics"
+      industry: "Logistics",
+      icon: Truck,
+      color: "bg-green-500"
+    },
+    {
+      company: "Premier Construction",
+      contact: "John Smith",
+      industry: "Construction",
+      icon: Building2,
+      color: "bg-purple-500"
+    },
+    {
+      company: "African Mining Corp",
+      contact: "Sarah Johnson",
+      industry: "Mining",
+      icon: Pickaxe,
+      color: "bg-red-500"
     }
   ];
 
@@ -36,19 +58,23 @@ const ReferencesSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {references.map((ref, index) => (
-            <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-primary/20">
-              <CardContent className="p-8 text-center">
-                <Quote className="h-8 w-8 text-accent mx-auto mb-4" />
-                <h3 className="text-xl font-bold mb-2">{ref.company}</h3>
-                <p className="text-muted-foreground mb-2">{ref.contact}</p>
-                <div className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
-                  {ref.industry}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="relative overflow-hidden">
+          <div className="flex gap-6 animate-scroll">
+            {[...references, ...references].map((ref, index) => (
+              <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-primary/20 flex-shrink-0 w-72">
+                <CardContent className="p-8 text-center">
+                  <div className={`${ref.color} w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4`}>
+                    <ref.icon className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-2">{ref.company}</h3>
+                  <p className="text-muted-foreground mb-2">{ref.contact}</p>
+                  <div className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
+                    {ref.industry}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
 
         <div className="mt-16 text-center">

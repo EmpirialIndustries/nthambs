@@ -11,8 +11,8 @@ const HeroSection = () => {
       />
       <div className="absolute inset-0 bg-gradient-to-r from-secondary/90 to-primary/80" />
       
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-3xl">
+      <div className="container mx-auto px-4 relative z-10 text-center">
+        <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
             Delivering Beyond 
             <span className="bg-gradient-to-r from-accent to-white bg-clip-text text-transparent"> Expectations</span>
