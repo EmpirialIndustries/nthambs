@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Phone, Mail, MapPin, User, Send } from "lucide-react";
+import { Phone, Mail, MapPin, User, Send, Facebook, Twitter, Instagram } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 const ContactSection = () => {
@@ -44,10 +44,15 @@ const ContactSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
     console.log('Form submitted:', formData);
-    // You can add email functionality or API calls here
   };
+
+  // WhatsApp icon component (since it's not in lucide-react by default)
+  const WhatsAppIcon = () => (
+    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.63"/>
+    </svg>
+  );
 
   const services = [
     "Tippers",
@@ -83,6 +88,33 @@ const ContactSection = () => {
       email: "ops@nthambs.co.za",
       icon: User,
       color: "accent"
+    }
+  ];
+
+  const socialLinks = [
+    {
+      name: "Facebook",
+      icon: Facebook,
+      url: "https://facebook.com/nthambelenilogistics",
+      color: "hover:text-blue-600"
+    },
+    {
+      name: "Twitter",
+      icon: Twitter,
+      url: "https://twitter.com/nthambeleni",
+      color: "hover:text-sky-500"
+    },
+    {
+      name: "WhatsApp",
+      icon: WhatsAppIcon,
+      url: "https://wa.me/27722195751",
+      color: "hover:text-green-500"
+    },
+    {
+      name: "Instagram",
+      icon: Instagram,
+      url: "https://instagram.com/nthambelenilogistics",
+      color: "hover:text-pink-600"
     }
   ];
 
@@ -202,79 +234,96 @@ const ContactSection = () => {
           </Card>
         </div>
 
-        <div className={`grid lg:grid-cols-2 gap-16 items-start transition-all duration-1000 delay-300 ${
-          isVisible ? 'animate-in fade-in-0 slide-in-from-left-8' : 'opacity-0'
+        {/* Contact Information and Team - New Layout */}
+        <div className={`grid lg:grid-cols-3 gap-12 transition-all duration-1000 delay-300 ${
+          isVisible ? 'animate-in fade-in-0 slide-in-from-bottom-8' : 'opacity-0'
         }`}>
-          <div>
-            <h3 className="text-3xl font-bold mb-8 animate-in fade-in-0 slide-in-from-left-4 duration-1000">Get in Touch</h3>
+          
+          {/* Get in Touch Section */}
+          <div className="lg:col-span-1">
+            <h3 className="text-3xl font-bold mb-8 text-center lg:text-left">Get in Touch</h3>
             
-            <div className="space-y-6 mb-8">
-              <div className="flex items-center space-x-4 group hover:bg-white/50 p-4 rounded-lg transition-all duration-300 animate-in fade-in-0 slide-in-from-left-4 duration-1000 delay-200">
-                <div className="bg-primary/10 p-3 rounded-full group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
+            <div className="space-y-6">
+              {/* Address */}
+              <div className="flex items-start space-x-4 group hover:bg-white/50 p-4 rounded-xl transition-all duration-300">
+                <div className="bg-primary/10 p-3 rounded-full group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300 flex-shrink-0">
                   <MapPin className="h-6 w-6 text-primary group-hover:animate-bounce" />
                 </div>
                 <div>
-                  <h4 className="font-semibold group-hover:text-primary transition-colors duration-300">Address</h4>
-                  <p className="text-muted-foreground group-hover:text-foreground transition-colors duration-300">
-                    Letaba Building, Riverside Office Park<br />
+                  <h4 className="font-semibold group-hover:text-primary transition-colors duration-300 mb-2">Address</h4>
+                  <p className="text-muted-foreground group-hover:text-foreground transition-colors duration-300 text-sm leading-relaxed">
+                    Letaba Building<br />
+                    Riverside Office Park<br />
                     Lenchen South, Centurion
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-4 group hover:bg-white/50 p-4 rounded-lg transition-all duration-300 animate-in fade-in-0 slide-in-from-left-4 duration-1000 delay-300">
-                <div className="bg-secondary/10 p-3 rounded-full group-hover:bg-secondary/20 group-hover:scale-110 transition-all duration-300">
-                  <Mail className="h-6 w-6 text-secondary group-hover:animate-pulse" />
-                </div>
-                <div>
-                  <h4 className="font-semibold group-hover:text-secondary transition-colors duration-300">Website</h4>
-                  <p className="text-muted-foreground group-hover:text-foreground transition-colors duration-300">www.nthambs.co.za</p>
+              {/* Social Media */}
+              <div className="bg-gradient-to-br from-primary/5 to-secondary/5 p-6 rounded-xl">
+                <h4 className="font-semibold mb-4 text-center">Follow Us</h4>
+                <div className="flex justify-center space-x-4">
+                  {socialLinks.map((social, index) => (
+                    
+                      key={index}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`bg-white/80 hover:bg-white p-3 rounded-full shadow-md hover:shadow-lg transform hover:scale-110 transition-all duration-300 ${social.color} group`}
+                      aria-label={`Follow us on ${social.name}`}
+                    >
+                      <social.icon className="h-5 w-5 group-hover:animate-pulse" />
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>
-
-            <div className="flex flex-col sm:flex-row gap-4 animate-in fade-in-0 slide-in-from-left-4 duration-1000 delay-500">
-              <Button variant="hero" size="lg" className="flex-1 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
-                Request a Quote
-              </Button>
-              <Button variant="outline" size="lg" className="flex-1 transform hover:scale-105 transition-all duration-300 hover:shadow-lg">
-                Get in Touch
-              </Button>
-            </div>
           </div>
 
-          <div className={`space-y-6 transition-all duration-1000 delay-500 ${
-            isVisible ? 'animate-in fade-in-0 slide-in-from-right-8' : 'opacity-0'
-          }`}>
-            <h3 className="text-2xl font-bold mb-6 animate-in fade-in-0 slide-in-from-right-4 duration-1000">Our Team</h3>
-            {contacts.map((contact, index) => (
-              <Card key={index} className={`hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 animate-in fade-in-0 slide-in-from-right-4 duration-1000 delay-${(index + 1) * 200}`}>
-                <CardHeader className="pb-4 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <CardTitle className="flex items-center space-x-3 relative z-10">
-                    <div className={`bg-${contact.color}/10 p-2 rounded-full hover:scale-110 transition-all duration-300`}>
-                      <contact.icon className={`h-5 w-5 text-${contact.color} hover:animate-bounce`} />
+          {/* Our Team Section */}
+          <div className="lg:col-span-2">
+            <h3 className="text-3xl font-bold mb-8 text-center lg:text-left">Our Team</h3>
+            
+            <div className="grid md:grid-cols-1 gap-6">
+              {contacts.map((contact, index) => (
+                <Card key={index} className="group hover:shadow-xl transition-all duration-500 transform hover:scale-[1.02] border-primary/20">
+                  <CardContent className="p-6">
+                    <div className="flex items-center space-x-4">
+                      {/* Profile Icon */}
+                      <div className={`bg-${contact.color}/10 p-4 rounded-full group-hover:scale-110 transition-all duration-300 flex-shrink-0`}>
+                        <contact.icon className={`h-8 w-8 text-${contact.color} group-hover:animate-bounce`} />
+                      </div>
+                      
+                      {/* Contact Info */}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                          <div>
+                            <h4 className="text-xl font-bold group-hover:text-primary transition-colors duration-300">
+                              {contact.name}
+                            </h4>
+                            <p className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300 mb-3">
+                              {contact.role}
+                            </p>
+                          </div>
+                        </div>
+                        
+                        {/* Contact Details */}
+                        <div className="grid sm:grid-cols-2 gap-3">
+                          <div className="flex items-center space-x-3 hover:text-primary transition-colors duration-300 cursor-pointer group/contact">
+                            <Phone className="h-4 w-4 text-muted-foreground group-hover/contact:animate-pulse flex-shrink-0" />
+                            <span className="text-sm font-medium">{contact.phone}</span>
+                          </div>
+                          <div className="flex items-center space-x-3 hover:text-primary transition-colors duration-300 cursor-pointer group/contact">
+                            <Mail className="h-4 w-4 text-muted-foreground group-hover/contact:animate-pulse flex-shrink-0" />
+                            <span className="text-sm font-medium truncate">{contact.email}</span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div>
-                      <div className="text-lg hover:text-primary transition-colors duration-300">{contact.name}</div>
-                      <div className="text-sm text-muted-foreground font-normal hover:text-foreground transition-colors duration-300">{contact.role}</div>
-                    </div>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="pt-0 relative z-10">
-                  <div className="space-y-2">
-                    <div className="flex items-center space-x-3 hover:text-primary transition-colors duration-300 cursor-pointer">
-                      <Phone className="h-4 w-4 text-muted-foreground hover:animate-pulse" />
-                      <span className="text-sm">{contact.phone}</span>
-                    </div>
-                    <div className="flex items-center space-x-3 hover:text-primary transition-colors duration-300 cursor-pointer">
-                      <Mail className="h-4 w-4 text-muted-foreground hover:animate-pulse" />
-                      <span className="text-sm">{contact.email}</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         </div>
       </div>
