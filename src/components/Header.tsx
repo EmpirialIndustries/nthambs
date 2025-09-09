@@ -45,7 +45,7 @@ const Header = () => {
           {/* Logo */}
           <div className="flex items-center space-x-3">
             <img
-              src="/lovable-uploads/ca84ba09-4dc8-455b-b849-dcd68d8e5a23.png"
+              src="/Gallary/Logo.png"
               alt="Nthambeleni Logistics"
               className="h-10 w-10 lg:h-12 lg:w-12"
             />
