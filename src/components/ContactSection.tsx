@@ -1,10 +1,21 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Phone, Mail, MapPin, User } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Phone, Mail, MapPin, User, Send } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 const ContactSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    service: '',
+    message: ''
+  });
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -23,6 +34,30 @@ const ContactSection = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle form submission here
+    console.log('Form submitted:', formData);
+    // You can add email functionality or API calls here
+  };
+
+  const services = [
+    "Tippers",
+    "Project Cargo",
+    "Abnormal Loads", 
+    "Road Freight",
+    "Bulk Transport",
+    "General Logistics",
+    "Other"
+  ];
 
   const contacts = [
     {
@@ -65,6 +100,106 @@ const ContactSection = () => {
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Partner with us today for reliable, innovative logistics solutions. Our team is ready to discuss your transport needs.
           </p>
+        </div>
+
+        {/* Quote Form Section */}
+        <div className={`mb-16 transition-all duration-1000 delay-200 ${
+          isVisible ? 'animate-in fade-in-0 slide-in-from-bottom-8' : 'opacity-0'
+        }`}>
+          <Card className="max-w-4xl mx-auto hover:shadow-xl transition-all duration-500 border-primary/20">
+            <CardHeader className="text-center pb-6">
+              <CardTitle className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                Request a Quote
+              </CardTitle>
+              <p className="text-muted-foreground">Fill out the form below and we'll get back to you within 24 hours</p>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="name" className="text-sm font-medium">Full Name *</Label>
+                    <Input
+                      id="name"
+                      type="text"
+                      placeholder="Enter your full name"
+                      value={formData.name}
+                      onChange={(e) => handleInputChange('name', e.target.value)}
+                      required
+                      className="transition-all duration-300 focus:scale-105"
+                    />
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="email" className="text-sm font-medium">Email Address *</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="Enter your email address"
+                      value={formData.email}
+                      onChange={(e) => handleInputChange('email', e.target.value)}
+                      required
+                      className="transition-all duration-300 focus:scale-105"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="phone" className="text-sm font-medium">Phone Number</Label>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      placeholder="Enter your phone number"
+                      value={formData.phone}
+                      onChange={(e) => handleInputChange('phone', e.target.value)}
+                      className="transition-all duration-300 focus:scale-105"
+                    />
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="service" className="text-sm font-medium">Service Required *</Label>
+                    <Select value={formData.service} onValueChange={(value) => handleInputChange('service', value)}>
+                      <SelectTrigger className="transition-all duration-300 focus:scale-105">
+                        <SelectValue placeholder="Select a service" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {services.map((service) => (
+                          <SelectItem key={service} value={service.toLowerCase().replace(/\s+/g, '-')}>
+                            {service}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="message" className="text-sm font-medium">Message *</Label>
+                  <Textarea
+                    id="message"
+                    placeholder="Please provide details about your logistics requirements..."
+                    value={formData.message}
+                    onChange={(e) => handleInputChange('message', e.target.value)}
+                    required
+                    rows={5}
+                    className="transition-all duration-300 focus:scale-105 resize-none"
+                  />
+                </div>
+
+                <div className="flex justify-center pt-4">
+                  <Button 
+                    type="submit" 
+                    variant="hero" 
+                    size="lg" 
+                    className="px-12 py-3 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  >
+                    <Send className="h-4 w-4 mr-2" />
+                    Send Quote Request
+                  </Button>
+                </div>
+              </form>
+            </CardContent>
+          </Card>
         </div>
 
         <div className={`grid lg:grid-cols-2 gap-16 items-start transition-all duration-1000 delay-300 ${
