@@ -77,7 +77,6 @@ const ReferencesSection = () => {
         <div className={`text-center mb-16 transition-all duration-1000 ${
           isVisible ? 'animate-in fade-in-0 slide-in-from-bottom-8' : 'opacity-0'
         }`}>
-          <Users className="h-16 w-16 text-primary mx-auto mb-6 animate-bounce" />
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Trusted by Industry Leaders</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             These references reflect the trust placed in Nthambeleni Logistics by leading players in the industry.
