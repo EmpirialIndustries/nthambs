@@ -29,9 +29,9 @@ const ServicesSection = () => {
   const services = [
     {
       images: [
-        "/gallary/Tippers.jpg",
-        "/gallary/Tippers2.jpg",
-        "/gallary/Tippers3.jpg"
+        "/Gallary/Tippers.jpg",
+        "/Gallary/Tippers2.jpg",
+        "/Gallary/Tippers3.jpg"
       ],
       title: "Tippers",
       description: "Transport of minerals, mining commodities, grains, and other bulk materials.",
@@ -39,9 +39,9 @@ const ServicesSection = () => {
     },
     {
       images: [
-        "/gallary/ProjectCargo.jpg",
-        "/gallary/ProjectCargo2.jpg",
-        "/gallary/ProjectCargo3.jpg"
+        "/Gallary/ProjectCargo.jpg",
+        "/Gallary/ProjectCargo2.jpg",
+        "/Gallary/ProjectCargo3.jpg"
       ],
       title: "Project Cargo",
       description: "Specialised logistics for large, complex, or high-value shipments.",
@@ -49,9 +49,9 @@ const ServicesSection = () => {
     },
     {
       images: [
-        "/gallary/Abnormallords.jpg",
-        "/gallary/Abnormallords2.jpg",
-        "/gallary/Abnormallords3.jpg"
+        "/Gallary/Abnormalloads.jpg",
+        "/Gallary/Abnormalloads2.jpg",
+        "/Gallary/Abnormalloads3.jpg"
       ],
       title: "Abnormal Loads",
       description: "Expert handling of oversized cargo, including route planning, permits, and escorts.",
@@ -59,9 +59,9 @@ const ServicesSection = () => {
     },
     {
       images: [
-        "/gallary/RoadFreight.jpg",
-        "/gallary/RoadFreight2.jpg",
-        "/gallary/RoadFreight3.jpg"
+        "/Gallary/RoadFreight.jpg",
+        "/Gallary/RoadFreight2.jpg",
+        "/Gallary/RoadFreight3.jpg"
       ],
       title: "Road Freight",
       description: "Reliable, efficient local and cross-border transport with skilled drivers.",
@@ -69,9 +69,9 @@ const ServicesSection = () => {
     },
     {
       images: [
-        "/gallary/BulkTransport.jpg",
-        "/gallary/BulkTransport2.jpg",
-        "/gallary/BulkTransport3.jpg"
+        "/Gallary/BulkTransport.jpg",
+        "/Gallary/BulkTransport2.jpg",
+        "/Gallary/BulkTransport3.jpg"
       ],
       title: "Bulk Transport",
       description: "Cost-effective movement of high-volume goods with optimised scheduling.",
