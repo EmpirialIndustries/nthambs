@@ -112,7 +112,7 @@ const HeroSection = () => {
 
           {/* Statistics Grid */}
           <div className="animate-in fade-in-0 slide-in-from-bottom-4 duration-1000 delay-700">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-white pt-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-white pt-5.5">
               {statsData.map((stat, index) => {
                 const IconComponent = stat.icon;
                 return (
