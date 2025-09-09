@@ -1,14 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useEffect, useRef, useState } from "react";
-import tippersImage from "@/assets/tippers-service.jpg";
-import projectCargoImage from "@/assets/project-cargo-service.jpg";
-import abnormalLoadsImage from "@/assets/abnormal-loads-service.jpg";
-import roadFreightImage from "@/assets/road-freight-service.jpg";
-import bulkTransportImage from "@/assets/bulk-transport-service.jpg";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
 const miningImage = "/lovable-uploads/4554c16f-639b-4a3e-b9b3-c4a42c917259.png";
 
 const ServicesSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState<{[key: number]: number}>({});
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -30,36 +28,70 @@ const ServicesSection = () => {
 
   const services = [
     {
-      image: tippersImage,
+      images: [
+        "/gallery/Tippers.jpg",
+        "/gallery/Tippers2.jpg",
+        "/gallery/Tippers3.jpg"
+      ],
       title: "Tippers",
       description: "Transport of minerals, mining commodities, grains, and other bulk materials.",
       gradient: "from-primary/20 to-primary/5"
     },
     {
-      image: projectCargoImage,
+      images: [
+        "/gallery/ProjectCargo.jpg",
+        "/gallery/ProjectCargo2.jpg",
+        "/gallery/ProjectCargo3.jpg"
+      ],
       title: "Project Cargo",
       description: "Specialised logistics for large, complex, or high-value shipments.",
       gradient: "from-secondary/20 to-secondary/5"
     },
     {
-      image: abnormalLoadsImage,
+      images: [
+        "/gallery/Abnormallords.jpg",
+        "/gallery/Abnormallords2.jpg",
+        "/gallery/Abnormallords3.jpg"
+      ],
       title: "Abnormal Loads",
       description: "Expert handling of oversized cargo, including route planning, permits, and escorts.",
       gradient: "from-accent/20 to-accent/5"
     },
     {
-      image: roadFreightImage,
+      images: [
+        "/gallery/RoadFreight.jpg",
+        "/gallery/RoadFreight2.jpg",
+        "/gallery/RoadFreight3.jpg"
+      ],
       title: "Road Freight",
       description: "Reliable, efficient local and cross-border transport with skilled drivers.",
       gradient: "from-primary/20 to-accent/5"
     },
     {
-      image: bulkTransportImage,
+      images: [
+        "/gallery/BulkTransport.jpg",
+        "/gallery/BulkTransport2.jpg",
+        "/gallery/BulkTransport3.jpg"
+      ],
       title: "Bulk Transport",
       description: "Cost-effective movement of high-volume goods with optimised scheduling.",
       gradient: "from-secondary/20 to-primary/5"
     }
   ];
+
+  const handlePrevImage = (serviceIndex: number) => {
+    setCurrentImageIndex(prev => ({
+      ...prev,
+      [serviceIndex]: prev[serviceIndex] === 0 ? services[serviceIndex].images.length - 1 : (prev[serviceIndex] || 0) - 1
+    }));
+  };
+
+  const handleNextImage = (serviceIndex: number) => {
+    setCurrentImageIndex(prev => ({
+      ...prev,
+      [serviceIndex]: ((prev[serviceIndex] || 0) + 1) % services[serviceIndex].images.length
+    }));
+  };
 
   return (
     <section id="services" ref={sectionRef} className="py-20 relative overflow-hidden">
@@ -85,12 +117,45 @@ const ServicesSection = () => {
             }`}>
               <div className="relative h-48 overflow-hidden">
                 <img 
-                  src={service.image} 
+                  src={service.images[currentImageIndex[index] || 0]} 
                   alt={service.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className={`absolute inset-0 bg-gradient-to-t ${service.gradient} group-hover:opacity-80 transition-opacity duration-300`} />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300" />
+                
+                {/* Navigation Arrows */}
+                <button 
+                  onClick={() => handlePrevImage(index)}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform hover:scale-110 backdrop-blur-sm"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </button>
+                
+                <button 
+                  onClick={() => handleNextImage(index)}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform hover:scale-110 backdrop-blur-sm"
+                  aria-label="Next image"
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </button>
+
+                {/* Image indicators */}
+                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex space-x-1 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  {service.images.map((_, imgIndex) => (
+                    <button
+                      key={imgIndex}
+                      onClick={() => setCurrentImageIndex(prev => ({ ...prev, [index]: imgIndex }))}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                        (currentImageIndex[index] || 0) === imgIndex 
+                          ? 'bg-white' 
+                          : 'bg-white/50 hover:bg-white/75'
+                      }`}
+                      aria-label={`Go to image ${imgIndex + 1}`}
+                    />
+                  ))}
+                </div>
               </div>
               <CardHeader className="pb-4">
                 <CardTitle className="text-xl group-hover:text-primary transition-colors duration-300">{service.title}</CardTitle>
