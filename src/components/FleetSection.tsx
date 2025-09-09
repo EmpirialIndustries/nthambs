@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, Wrench, Shield, Clock } from "lucide-react";
-import fleetImage from "@/assets/fleet-trucks.jpg";
+const fleetImage = "/lovable-uploads/ab7d0d06-1439-4025-a701-fd09a0464625.png";
 
 const FleetSection = () => {
   return (
@@ -87,7 +87,7 @@ const FleetSection = () => {
           
           <Card className="text-center border-secondary/20">
             <CardContent className="p-8">
-              <div className="text-4xl font-bold text-secondary mb-2">100%</div>
+              <div className="text-4xl font-bold text-secondary mb-2">98%</div>
               <div className="text-muted-foreground">Fleet Availability</div>
             </CardContent>
           </Card>

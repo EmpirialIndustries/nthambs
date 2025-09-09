@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Truck, Award, Globe, Shield } from "lucide-react";
-import heroImage from "@/assets/hero-logistics.jpg";
+const heroImage = "/lovable-uploads/1b92cb1b-94e0-41f4-baee-c79472c98359.png";
 
 const HeroSection = () => {
   return (
@@ -45,13 +45,13 @@ const HeroSection = () => {
             </div>
             <div className="text-center">
               <Award className="h-8 w-8 mx-auto mb-2 text-accent" />
-              <div className="text-2xl font-bold">100%</div>
-              <div className="text-sm opacity-90">Reliability</div>
+              <div className="text-2xl font-bold">15+</div>
+              <div className="text-sm opacity-90">Years Experience</div>
             </div>
             <div className="text-center">
               <Shield className="h-8 w-8 mx-auto mb-2 text-accent" />
               <div className="text-2xl font-bold">24/7</div>
-              <div className="text-sm opacity-90">Safe Transport</div>
+              <div className="text-sm opacity-90">Operations</div>
             </div>
           </div>
         </div>

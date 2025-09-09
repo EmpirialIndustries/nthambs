@@ -1,35 +1,39 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Truck, Package, Route, Boxes, Scale } from "lucide-react";
-import miningImage from "@/assets/mining-cargo.jpg";
+import tippersImage from "@/assets/tippers-service.jpg";
+import projectCargoImage from "@/assets/project-cargo-service.jpg";
+import abnormalLoadsImage from "@/assets/abnormal-loads-service.jpg";
+import roadFreightImage from "@/assets/road-freight-service.jpg";
+import bulkTransportImage from "@/assets/bulk-transport-service.jpg";
+const miningImage = "/lovable-uploads/4554c16f-639b-4a3e-b9b3-c4a42c917259.png";
 
 const ServicesSection = () => {
   const services = [
     {
-      icon: Scale,
+      image: tippersImage,
       title: "Tippers",
       description: "Transport of minerals, mining commodities, grains, and other bulk materials.",
       gradient: "from-primary/20 to-primary/5"
     },
     {
-      icon: Package,
+      image: projectCargoImage,
       title: "Project Cargo",
       description: "Specialised logistics for large, complex, or high-value shipments.",
       gradient: "from-secondary/20 to-secondary/5"
     },
     {
-      icon: Route,
+      image: abnormalLoadsImage,
       title: "Abnormal Loads",
       description: "Expert handling of oversized cargo, including route planning, permits, and escorts.",
       gradient: "from-accent/20 to-accent/5"
     },
     {
-      icon: Truck,
+      image: roadFreightImage,
       title: "Road Freight",
       description: "Reliable, efficient local and cross-border transport with skilled drivers.",
       gradient: "from-primary/20 to-accent/5"
     },
     {
-      icon: Boxes,
+      image: bulkTransportImage,
       title: "Bulk Transport",
       description: "Cost-effective movement of high-volume goods with optimised scheduling.",
       gradient: "from-secondary/20 to-primary/5"
@@ -49,11 +53,18 @@ const ServicesSection = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {services.map((service, index) => (
             <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-0 overflow-hidden">
-              <CardHeader className={`bg-gradient-to-br ${service.gradient} pb-4`}>
-                <service.icon className="h-12 w-12 text-primary mb-4" />
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src={service.image} 
+                  alt={service.title}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className={`absolute inset-0 bg-gradient-to-t ${service.gradient}`} />
+              </div>
+              <CardHeader className="pb-4">
                 <CardTitle className="text-xl">{service.title}</CardTitle>
               </CardHeader>
-              <CardContent className="p-6">
+              <CardContent className="p-6 pt-0">
                 <p className="text-muted-foreground">{service.description}</p>
               </CardContent>
             </Card>
