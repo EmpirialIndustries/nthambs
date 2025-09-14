@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Homepage -->
+  <url>
+    <loc>https://nthambs.com/</loc>
+    <lastmod>2024-12-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://nthambs.com/Gallary/Logo.png</image:loc>
+      <image:title>Nthambeleni Logistics - Professional Transport Solutions</image:title>
+      <image:caption>Modern fleet of trucks serving South Africa and SADC region</image:caption>
+    </image:image>
+  </url>
+
+  <!-- About Section -->
+  <url>
+    <loc>https://nthambs.com/#about</loc>
+    <lastmod>2024-12-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Services -->
+  <url>
+    <loc>https://nthambs.com/#services</loc>
+    <lastmod>2024-12-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://nthambs.com/Gallary/Tippers.jpg</image:loc>
+      <image:title>Tippers Transport Service</image:title>
+      <image:caption>Professional tipper trucks for bulk material transport</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://nthambs.com/Gallary/ProjectCargo.jpg</image:loc>
+      <image:title>Project Cargo Transport</image:title>
+      <image:caption>Specialized logistics for large and complex shipments</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://nthambs.com/Gallary/Abnormalloads.jpg</image:loc>
+      <image:title>Abnormal Loads Transport</image:title>
+      <image:caption>Expert handling of oversized cargo with permits and escorts</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://nthambs.com/Gallary/Roadfreight.jpg</image:loc>
+      <image:title>Road Freight Services</image:title>
+      <image:caption>Reliable local and cross-border transport solutions</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://nthambs.com/Gallary/BulkTransport.jpg</image:loc>
+      <image:title>Bulk Transport Services</image:title>
+      <image:caption>Cost-effective movement of high-volume goods</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Fleet -->
+  <url>
+    <loc>https://nthambs.com/#fleet</loc>
+    <lastmod>2024-12-16</lastmod>
+    <changefreq>quarterly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Contact -->
+  <url>
+    <loc>https://nthambs.com/#contact</loc>
+    <lastmod>2024-12-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>

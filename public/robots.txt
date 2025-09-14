@@ -1,7 +1,19 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://nthambs.com/sitemap.xml
+
+# Block access to admin areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+
+# Allow important crawlers
 User-agent: Googlebot
 Allow: /
 
-User-agent: Bingbot
+User-agent: Bingbot  
 Allow: /
 
 User-agent: Twitterbot
@@ -10,5 +22,5 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: *
-Allow: /
+# Crawl delay for other bots
+Crawl-delay: 1

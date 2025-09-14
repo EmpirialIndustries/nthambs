@@ -1,0 +1,22 @@
+{
+  "name": "Nthambeleni Logistics",
+  "short_name": "Nthambeleni",
+  "description": "Professional transport and logistics solutions serving South Africa and SADC region",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#E63946",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "transportation", "logistics"],
+  "lang": "en-ZA",
+  "scope": "/",
+  "prefer_related_applications": false
+}

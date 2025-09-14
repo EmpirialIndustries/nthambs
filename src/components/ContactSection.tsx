@@ -263,8 +263,8 @@ const ContactSection = () => {
               <div className="bg-gradient-to-br from-primary/5 to-secondary/5 p-6 rounded-xl">
                 <h4 className="font-semibold mb-4 text-center">Follow Us</h4>
                 <div className="flex justify-center space-x-4">
-                  {socialLinks.map((social, index) => (
-                    
+              {socialLinks.map((social, index) => (
+                    <a
                       key={index}
                       href={social.url}
                       target="_blank"
