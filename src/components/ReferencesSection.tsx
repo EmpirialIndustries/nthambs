@@ -1,10 +1,12 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Quote, Users } from "lucide-react";
+import { Quote, Users, ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 const ReferencesSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -63,10 +65,34 @@ const ReferencesSection = () => {
       company: "African Mining Corp",
       contact: "Sarah Johnson",
       industry: "Mining",
-      image: "/Trusted_By/AfricanMining.jpg", // Note: You'll need this image file
+      image: "/Trusted_By/AfricanMining.jpg",
       color: "bg-red-500"
     }
   ];
+
+  const scrollToIndex = (index: number) => {
+    if (scrollContainerRef.current) {
+      const cardWidth = 288; // 72 * 4 = 288px (w-72)
+      const gap = 24; // 6 * 4 = 24px (gap-6)
+      const scrollPosition = index * (cardWidth + gap);
+      
+      scrollContainerRef.current.scrollTo({
+        left: scrollPosition,
+        behavior: 'smooth'
+      });
+      setCurrentIndex(index);
+    }
+  };
+
+  const handlePrevious = () => {
+    const newIndex = currentIndex > 0 ? currentIndex - 1 : references.length - 1;
+    scrollToIndex(newIndex);
+  };
+
+  const handleNext = () => {
+    const newIndex = currentIndex < references.length - 1 ? currentIndex + 1 : 0;
+    scrollToIndex(newIndex);
+  };
 
   return (
     <section ref={sectionRef} className="py-20 relative overflow-hidden">
@@ -83,35 +109,74 @@ const ReferencesSection = () => {
           </p>
         </div>
 
-        <div className={`relative overflow-hidden transition-all duration-1000 delay-300 ${
+        <div className={`relative transition-all duration-1000 delay-300 ${
           isVisible ? 'animate-in fade-in-0 slide-in-from-left-8' : 'opacity-0'
         }`}>
-          <div className="flex gap-6 animate-scroll">
-            {[...references, ...references].map((ref, index) => (
-              <Card key={index} className="group hover:shadow-xl transition-all duration-500 border-primary/20 flex-shrink-0 w-72 transform hover:scale-105 hover:-translate-y-2">
-                <CardContent className="p-8 text-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
-                  {/* Image container with background color fallback */}
-                  <div className={`${ref.color} w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-all duration-300 relative z-10 overflow-hidden`}>
-                    <img 
-                      src={ref.image} 
-                      alt={`${ref.company} logo`}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-all duration-300"
-                      onError={(e) => {
-                        // Fallback to a generic placeholder or hide the image
-                        e.currentTarget.style.display = 'none';
-                      }}
-                    />
-                  </div>
-                  
-                  <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors duration-300 relative z-10">{ref.company}</h3>
-                  <p className="text-muted-foreground mb-2 group-hover:text-foreground transition-colors duration-300 relative z-10">{ref.contact}</p>
-                  <div className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium group-hover:bg-primary group-hover:text-white transition-all duration-300 relative z-10">
-                    {ref.industry}
-                  </div>
-                </CardContent>
-              </Card>
+          {/* Navigation Arrows */}
+          <button
+            onClick={handlePrevious}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 transition-all duration-300 hover:scale-110 border border-primary/20 group"
+            aria-label="Previous reference"
+          >
+            <ChevronLeft className="h-6 w-6 text-primary group-hover:text-primary/80" />
+          </button>
+          
+          <button
+            onClick={handleNext}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 transition-all duration-300 hover:scale-110 border border-primary/20 group"
+            aria-label="Next reference"
+          >
+            <ChevronRight className="h-6 w-6 text-primary group-hover:text-primary/80" />
+          </button>
+
+          {/* Scrollable container */}
+          <div 
+            ref={scrollContainerRef}
+            className="overflow-x-auto scrollbar-hide px-12"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            <div className="flex gap-6 pb-4">
+              {references.map((ref, index) => (
+                <Card key={index} className="group hover:shadow-xl transition-all duration-500 border-primary/20 flex-shrink-0 w-72 transform hover:scale-105 hover:-translate-y-2">
+                  <CardContent className="p-8 text-center relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    
+                    {/* Image container with background color fallback */}
+                    <div className={`${ref.color} w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-all duration-300 relative z-10 overflow-hidden`}>
+                      <img 
+                        src={ref.image} 
+                        alt={`${ref.company} logo`}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-all duration-300"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                        }}
+                      />
+                    </div>
+                    
+                    <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors duration-300 relative z-10">{ref.company}</h3>
+                    <p className="text-muted-foreground mb-2 group-hover:text-foreground transition-colors duration-300 relative z-10">{ref.contact}</p>
+                    <div className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium group-hover:bg-primary group-hover:text-white transition-all duration-300 relative z-10">
+                      {ref.industry}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          {/* Pagination dots */}
+          <div className="flex justify-center mt-6 space-x-2">
+            {references.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => scrollToIndex(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  currentIndex === index 
+                    ? 'bg-primary scale-110' 
+                    : 'bg-primary/30 hover:bg-primary/50'
+                }`}
+                aria-label={`Go to reference ${index + 1}`}
+              />
             ))}
           </div>
         </div>
@@ -135,6 +200,12 @@ const ReferencesSection = () => {
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </section>
   );
 };
