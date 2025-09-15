@@ -61,6 +61,7 @@ const ContactSection = () => {
     "Road Freight",
     "Bulk Transport",
     "General Logistics",
+    "Mining Equipment",
     "Other"
   ];
 
