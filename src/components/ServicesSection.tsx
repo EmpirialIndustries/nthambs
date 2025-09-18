@@ -76,6 +76,15 @@ const ServicesSection = () => {
       title: "Bulk Transport",
       description: "Cost-effective movement of high-volume goods with optimised scheduling.",
       gradient: "from-secondary/20 to-primary/5"
+    },
+    {
+      images: [
+        "/Gallary/WhatsApp Image 2025-09-17 at 10.28.08_3aebeadf.jpg",
+        "/Gallary/WhatsApp Image 2025-09-17 at 10.28.08_30afa084.jpg"
+      ],
+      title: "Mining & Equipment",
+      description: "Specialized transport of heavy mining machinery, equipment, and industrial components.",
+      gradient: "from-accent/20 to-secondary/5"
     }
   ];
 
